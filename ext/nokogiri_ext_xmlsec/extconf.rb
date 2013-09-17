@@ -20,3 +20,4 @@ unless have_library 'xmlsec1-openssl'
   have_library 'xmlsec1'
 end
 create_makefile('nokogiri_ext_xmlsec')
+
