@@ -14,6 +14,7 @@ if $CFLAGS =~ /\-DXMLSEC_CRYPTO=\\\\\\"openssl\\\\\\"/
   $CFLAGS['-DXMLSEC_CRYPTO=\\\\\\"openssl\\\\\\"'] =
     '-DXMLSEC_CRYPTO=\\"openssl\\"'
 end
+$CFLAGS += " -DXMLSEC_CRYPTO_OPENSSL"
 
 unless have_library 'xmlsec1-openssl'
   have_library 'xmlsec1'
