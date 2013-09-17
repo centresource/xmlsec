@@ -15,10 +15,11 @@ if $CFLAGS =~ /\-DXMLSEC_CRYPTO=\\\\\\"openssl\\\\\\"/
     '-DXMLSEC_CRYPTO=\\"openssl\\"'
 end
 $CFLAGS += " -DXMLSEC_CRYPTO_OPENSSL"
-$LDFLAGS += " -static"
 
 unless have_library 'xmlsec1-openssl'
   have_library 'xmlsec1'
 end
+
+$LDFLAGS.gsub!('-lxmlsec1-openssl', '-Wl,-static -lxmlsec1-openssl -Wl,-shared')
 create_makefile('nokogiri_ext_xmlsec')
 
