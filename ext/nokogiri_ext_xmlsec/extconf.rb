@@ -8,6 +8,10 @@ barf unless have_header('ruby.h')
 
 pkg_config('xmlsec1-openssl')
 # HACK 'openssl' is escaped too many times, I don't know why
-$CFLAGS += ' -DXMLSEC_CRYPTO=\\"openssl\\"'
+if $CFLAGS =~ /\-DXMLSEC_CRYPTO=\\\\\\"openssl\\\\\\"/
+  $CFLAGS['-DXMLSEC_CRYPTO=\\\\\\"openssl\\\\\\"'] =
+    '-DXMLSEC_CRYPTO=\\"openssl\\"'
+end
+
 have_library 'xmlsec1-openssl'
 create_makefile('nokogiri_ext_xmlsec')
